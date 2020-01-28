@@ -18,11 +18,12 @@ describe('records', () => {
     expect(addPayment).toBeInstanceOf(Function);
   });
   describe('addPayment', () => {
-    describe('override', () => {
+    describe('with season specified', () => {
       it('should record a payment to the specified season', () => {
         const seasonID = 'seasonID'
         addPayment(mockCustomerID, mockDate, mockAmount, seasonID);
         expect(saveRepayment).toHaveBeenCalledWith(mockAmount, seasonID, mockCustomerID, mockDate);
+        //TODO: is this really required
       });
       it('should update the customer summary record for that season', () => {
         const seasonID = 'seasonID'
