@@ -8,7 +8,18 @@ export function addPayment(customerID, date, amount, seasonID) {
     updateRepayment(customerID, seasonID, amount)
     return
   }
-  const outStandingSeason = getOutstandingSeason(customerID)
-  saveRepayment(amount, outStandingSeason.seasonID, customerID, date);
-  updateRepayment(customerID,outStandingSeason.seasonID, amount)
+  const outstandingSeason = getOutstandingSeason(customerID)
+  saveRepayment(amount, outstandingSeason.seasonID, customerID, date);
+  updateRepayment(customerID, outstandingSeason.seasonID, amount);
+  if (amount <= outstandingSeason.outstandingAmount) {
+    return
+  }
+  if (outstandingSeason.outstandingAmount > 0) {
+    saveRepayment(outstandingSeason.outstandingAmount - amount,
+      outstandingSeason.seasonID, customerID, date);
+    const overpay = amount - outstandingSeason.outstandingAmount;
+    if (overpay > 0) {
+      addPayment(customerID,date,overpay)
+    }
+  }
 }
