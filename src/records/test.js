@@ -25,7 +25,6 @@ describe('records', () => {
         const seasonID = 'seasonID'
         addPayment(mockCustomerID, mockDate, mockAmount, seasonID);
         expect(saveRepayment).toHaveBeenCalledWith(mockAmount, seasonID, mockCustomerID, mockDate);
-        //TODO: is this really required
       });
       it('should update the customer summary record for that season', () => {
         const seasonID = 'seasonID'
@@ -46,7 +45,6 @@ describe('records', () => {
         addPayment(mockCustomerID, mockDate, mockAmount);
         expect(saveRepayment).toHaveBeenCalledWith(mockAmount,
           outStandingSeason.seasonID, mockCustomerID, mockDate);
-        //TODO: is this really required        
       });
       it('should update the customer summary record for the returned season', () => {
         addPayment(mockCustomerID, mockDate, mockAmount);
