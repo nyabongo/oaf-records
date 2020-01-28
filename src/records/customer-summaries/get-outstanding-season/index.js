@@ -1,4 +1,4 @@
-function getOutstandingSeason(params) {
+function getOutstandingSeason(customerID) {
 
 }
 

@@ -1,4 +1,4 @@
-const updateRepayment = () => {
+const updateRepayment = (customerID, seasonID, amount) => {
 
 }
 
