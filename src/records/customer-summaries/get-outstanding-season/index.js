@@ -1,6 +1,9 @@
-function getOutstandingSeason(customerID) {
-  const customerSummaries = JSON.parse(localStorage.getItem('CustomerSummaries'));
-  let summary = customerSummaries.find(({ CustomerID, Credit, TotalRepaid }) => {
+function fetchCustomerSummaries() {
+  return JSON.parse(localStorage.getItem('CustomerSummaries'));
+}
+
+function findEarliestOutstandingSeasonSummary(customerSummaries, customerID) {
+  return customerSummaries.find(({ CustomerID, Credit, TotalRepaid }) => {
     if (CustomerID === customerID) {
       if (TotalRepaid < Credit) {
         return true;
@@ -8,13 +11,25 @@ function getOutstandingSeason(customerID) {
     }
     return false;
   });
+}
+
+function findLatestCustomerSummary(customerSummaries, customerID) {
+  return customerSummaries.reverse().find(({ CustomerID }) => {
+    return CustomerID === customerID;
+  });
+}
+
+function getOutstandingSeason(customerID) {
+  const customerSummaries = fetchCustomerSummaries();
+  let summary = findEarliestOutstandingSeasonSummary(customerSummaries, customerID);
   if (!summary) {
-    summary = customerSummaries.reverse().find(({ CustomerID }) => {
-      return CustomerID === customerID
-    })
+    summary = findLatestCustomerSummary(customerSummaries, customerID)
   }
   return { seasonID: summary.SeasonID, outstandingAmount: summary.Credit - summary.TotalRepaid }
 
 }
 
 export default getOutstandingSeason;
+
+
+
