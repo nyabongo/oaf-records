@@ -56,10 +56,12 @@ describe('records', () => {
     });
   });
   describe('When more than enough for a single season', () => {
+    const fakeRepaymentID = 1999;
     beforeEach(() => {
       getOutstandingSeason.mockReturnValueOnce({ seasonID: 2011, outstandingAmount: 20 })
       getOutstandingSeason.mockReturnValueOnce({ seasonID: 2012, outstandingAmount: 90 })
       getOutstandingSeason.mockReturnValueOnce({ seasonID: 2013, outstandingAmount: 0 })
+      saveRepayment.mockReturnValueOnce(fakeRepaymentID)
     });
     it('should record the full payment to the earliest outstanding season', () => {
       addPayment(mockCustomerID, mockDate, 60);
@@ -67,11 +69,11 @@ describe('records', () => {
     });
     it('should record an adjustment payment to the earliest outstanding season so that only the owed amount is paid', () => {
       addPayment(mockCustomerID, mockDate, 60);
-      expect(saveRepayment).toHaveBeenCalledWith(20 - 60, 2011, mockCustomerID, mockDate);
+      expect(saveRepayment).toHaveBeenCalledWith(20 - 60, 2011, mockCustomerID, mockDate, fakeRepaymentID);
     });
     it('should record a payment with the balance to the next outstanding season', () => {
       addPayment(mockCustomerID, mockDate, 60);
-      expect(saveRepayment).toHaveBeenCalledWith(60 - 20, 2012, mockCustomerID, mockDate);
+      expect(saveRepayment).toHaveBeenCalledWith(60 - 20, 2012, mockCustomerID, mockDate, fakeRepaymentID);
     });
     it('should save only three payment record', () => {
       addPayment(mockCustomerID, mockDate, 60);
@@ -89,7 +91,7 @@ describe('records', () => {
     it('should save only one payment record', () => {
       addPayment(mockCustomerID, mockDate, 20);
       expect(saveRepayment).toHaveBeenCalledTimes(1);
-    });    
+    });
   });
   describe('For less than Exact payment', () => {
     beforeEach(() => {
@@ -102,6 +104,6 @@ describe('records', () => {
     it('should save only one payment record', () => {
       addPayment(mockCustomerID, mockDate, 10);
       expect(saveRepayment).toHaveBeenCalledTimes(1);
-    });    
+    });
   });
 });
