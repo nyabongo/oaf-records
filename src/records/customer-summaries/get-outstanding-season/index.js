@@ -1,3 +1,12 @@
+function sortBySeason(a, b) {
+  if (a.SeasonID < b.SeasonID) {
+    return -1
+  }
+  if (a.SeasonID > b.SeasonID) {
+    return 1
+  }
+  return 0
+}
 function fetchCustomerSummaries() {
   return JSON.parse(localStorage.getItem('CustomerSummaries'));
 }
@@ -20,7 +29,7 @@ function findLatestCustomerSummary(customerSummaries, customerID) {
 }
 
 function getOutstandingSeason(customerID) {
-  const customerSummaries = fetchCustomerSummaries();
+  const customerSummaries = fetchCustomerSummaries().sort(sortBySeason);
   let summary = findEarliestOutstandingSeasonSummary(customerSummaries, customerID);
   if (!summary) {
     summary = findLatestCustomerSummary(customerSummaries, customerID)

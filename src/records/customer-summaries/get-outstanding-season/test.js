@@ -31,13 +31,13 @@ const mockCustomerSummaries = [
     "Credit": 7900,
     "TotalRepaid": 7900
   },
-  withOutstanding,
   {
     "CustomerID": 1,
     "SeasonID": 130,
     "Credit": 8000,
     "TotalRepaid": 7400
   },
+  withOutstanding,
   allPaidUp,
   paidTooMuch,
 ]
