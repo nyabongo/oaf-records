@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { loadData } from './sample-data';
+import { loadData, uploadPayments, clearData } from './sample-data';
 import App from '.';
 
 jest.mock('./sample-data')
@@ -23,7 +23,7 @@ describe('App', () => {
     it('should exist', () => {
       expect(button).toBeInTheDocument();
     });
-    it('should call the load samples function', () => {
+    it('should call the load samples function when clicked', () => {
       fireEvent.click(button);
       expect(loadData).toHaveBeenCalled();
     });
@@ -36,6 +36,10 @@ describe('App', () => {
     it('should exist', () => {
       expect(button).toBeInTheDocument();
     });
+    it('should call the uploadPayments function when clicked', () => {
+      fireEvent.click(button);
+      expect(uploadPayments).toHaveBeenCalled();
+    });
   });
   describe('Reset button', () => {
     let button;
@@ -44,6 +48,10 @@ describe('App', () => {
     });
     it('should exist', () => {
       expect(button).toBeInTheDocument();
+    });
+    it('should call the reset DB function when clicked', () => {
+      fireEvent.click(button);
+      expect(clearData).toHaveBeenCalled();
     });
   });
 
