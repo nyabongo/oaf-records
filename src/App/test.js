@@ -4,6 +4,7 @@ import { loadData, uploadPayments, clearData } from './sample-data';
 import App from '.';
 
 jest.mock('./sample-data')
+jest.mock('./data-browser', () => () => <div data-testid="data-browser"></div>)
 
 describe('App', () => {
   let result;
@@ -52,6 +53,16 @@ describe('App', () => {
     it('should call the reset DB function when clicked', () => {
       fireEvent.click(button);
       expect(clearData).toHaveBeenCalled();
+    });
+  });
+
+  describe('DataBrowser', () => {
+    let dataBrowser;
+    beforeEach(() => {
+      dataBrowser = result.getByTestId('data-browser')
+    });
+    it('should be in the document', () => {
+      expect(dataBrowser).toBeInTheDocument();
     });
   });
 
