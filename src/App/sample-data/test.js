@@ -23,6 +23,11 @@ describe('Sample Data functions', () => {
       const actual = JSON.parse(localStorage.getItem('Seasons'));
       expect(actual).toEqual(expected);
     });
+    it('should load Customer Summary in to local storage', () => {
+      const expected = data.CustomerSummaries;
+      const actual = JSON.parse(localStorage.getItem('CustomerSummaries'));
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('uploadPayments', () => {
