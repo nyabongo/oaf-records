@@ -16,6 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --testMatch=**/test.{js,jsx,ts,tsx}",
     "test:coverage": "react-scripts test --testMatch=**/test.js \"--coverage\" \"--watchAll=false\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix ",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
