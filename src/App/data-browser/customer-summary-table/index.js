@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
   TableContainer,
   Paper,
@@ -11,22 +11,29 @@ import {
 } from '@material-ui/core';
 import { fetchAll } from '../../../records/customer-summaries/fetch-summaries';
 
-const useCustomerSummary = () => fetchAll();
 const useClasses = makeStyles({
   tableContainer: {
   },
   header: {
     fontWeight: 'bold',
-    '& >*': {
-    },
   },
 });
 
+
 const CustomerSummaryTable = () => {
-  const summaries = useCustomerSummary();
+  const [updateCounter, setCounter] = useState(0);
+  const [summaries, setSummaries] = useState(fetchAll());
   const classes = useClasses();
+  useLayoutEffect(() => {
+    const callback = () => {
+      setSummaries(fetchAll());
+      setCounter(updateCounter + 1);
+    };
+    window.addEventListener('db-updated', callback);
+    return () => { window.removeEventListener('db-updated', callback); };
+  });
   return (
-    <TableContainer component={Paper} className={classes.tableContainer}>
+    <TableContainer key={`update-${updateCounter}`} component={Paper} className={classes.tableContainer}>
       <Table size="small">
         <TableHead className={classes.header}>
           <TableRow>

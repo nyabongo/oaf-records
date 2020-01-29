@@ -21,19 +21,31 @@ const useClasses = makeStyles({
 
 function App() {
   const classes = useClasses();
+  function handleLoadData() {
+    loadData();
+    window.dispatchEvent(new Event('db-updated'));
+  }
+  function handleUpload() {
+    uploadPayments();
+    window.dispatchEvent(new Event('db-updated'));
+  }
+  function handleReset() {
+    clearData();
+    window.dispatchEvent(new Event('db-updated'));
+  }
   return (
     <>
       <Typography variant="h1">
         Records
       </Typography>
       <Box className={classes.buttons}>
-        <Button variant="outlined" color="primary" onClick={loadData}>
+        <Button variant="outlined" color="primary" onClick={handleLoadData}>
           Load Data
         </Button>
-        <Button variant="outlined" color="primary" onClick={uploadPayments}>
+        <Button variant="outlined" color="primary" onClick={handleUpload}>
           Upload Payments
         </Button>
-        <Button variant="outlined" color="secondary" onClick={clearData}>
+        <Button variant="outlined" color="secondary" onClick={handleReset}>
           Clear Data
         </Button>
       </Box>
