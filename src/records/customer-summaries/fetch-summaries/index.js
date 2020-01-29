@@ -1,3 +1,3 @@
 export function fetchAll() {
-  return JSON.parse(localStorage.getItem('CustomerSummaries'));
+  return JSON.parse(localStorage.getItem('CustomerSummaries') || '[]');
 }
