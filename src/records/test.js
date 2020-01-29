@@ -104,4 +104,13 @@ describe('records', () => {
       expect(saveRepayment).toHaveBeenCalledTimes(1);
     });
   });
+  describe('When theres no outstanding season', () => {
+    beforeEach(() => {
+      getOutstandingSeason.mockReturnValueOnce(null);
+    });
+    it('should not call saveRepayment', () => {
+      addPayment(mockCustomerID, mockDate, 10);
+      expect(saveRepayment).not.toHaveBeenCalled();
+    });
+  });
 });
