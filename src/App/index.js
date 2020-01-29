@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Button, Box, makeStyles, Typography } from '@material-ui/core'
+const useClasses = makeStyles({
+  buttons: {
+    display: 'flex',
+    padding: '8px',
+    outline: ' 1px solid pink',
+    '&>*': {
+      margin: '4px'
+    },
+    '&>:last-child': {
+      marginLeft: '32px'
+    }
+  }
+})
 
 function App() {
+  const classes = useClasses()
   return (
-    <div className="App">
-      <header className="App-header">
+    <Fragment>
+      <Typography variant="h1" >
         Records
-      </header>
-    </div>
+      </Typography>
+      <Box className={classes.buttons} >
+        <Button variant="outlined" color="primary" >
+          Load Data
+      </Button>
+        <Button variant="outlined" color="primary" >
+          Upload Payments
+      </Button>
+        <Button variant="outlined" color="secondary" >
+          Clear Data
+      </Button>
+      </Box>
+    </Fragment>
   );
 }
 
