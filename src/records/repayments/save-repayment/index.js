@@ -9,8 +9,9 @@ function setRepayments(repayments) {
 
 const saveRepayment = (amount, seasonID, customerID, date, parentID) => {
   const repayments = fetchRepayments();
+  const repaymemntID = repayments.length + 1;
   repayments.push({
-    RepaymentID: repayments.length + 1,
+    RepaymentID: repaymemntID,
     Amount: amount,
     SeasonID: seasonID,
     CustomerID: customerID,
@@ -18,6 +19,7 @@ const saveRepayment = (amount, seasonID, customerID, date, parentID) => {
     ParentID: parentID || null
   });
   setRepayments(repayments);
+  return repaymemntID;
 };
 export default saveRepayment
 
