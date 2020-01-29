@@ -15,10 +15,24 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --testMatch=**/test.{js,jsx,ts,tsx}",
+    "test:coverage": "react-scripts test --testMatch=**/test.js \"--coverage\" \"--watchAll=false\"",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "collectCoverageFrom": [
+      "**/index.js",
+      "!**/node_modules/**",
+      "!**/build/**",
+      "!**/coverage/**"
+    ]
   },
   "browserslist": {
     "production": [
