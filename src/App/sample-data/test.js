@@ -51,5 +51,8 @@ describe('Sample Data functions', () => {
     it('should be a function', () => {
       expect(clearData).toBeInstanceOf(Function);
     });
+    it('should empty localstorage', () => {
+      jest.fail('Not Implemented')
+    });
   });
 });
