@@ -36,4 +36,9 @@ describe('saveRepayment', () => {
       ParentID: null
     });
   });
+  it('should return the repaymentsID', () => {
+    const result = saveRepayment(amount, seasonID, customerID, date);
+    const repayments = JSON.parse(localStorage.getItem('Repayments'));
+    expect(result).toEqual(repayments.length);
+  });
 });
