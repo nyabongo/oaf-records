@@ -1,8 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import { loadData } from './sample-data';
 import App from '.';
 
-// jest.mock('@material-ui/core/Button', () => (p) => <button {...p} />)
+jest.mock('./sample-data')
 
 describe('App', () => {
   let result;
@@ -21,6 +22,10 @@ describe('App', () => {
     });
     it('should exist', () => {
       expect(button).toBeInTheDocument();
+    });
+    it('should call the load samples function', () => {
+      fireEvent.click(button);
+      expect(loadData).toHaveBeenCalled();
     });
   });
   describe('Upload Payments button', () => {

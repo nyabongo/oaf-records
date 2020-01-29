@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Button, Box, makeStyles, Typography } from '@material-ui/core'
+import { loadData } from './sample-data';
 const useClasses = makeStyles({
   buttons: {
     display: 'flex',
@@ -22,7 +23,7 @@ function App() {
         Records
       </Typography>
       <Box className={classes.buttons} >
-        <Button variant="outlined" color="primary" >
+        <Button variant="outlined" color="primary" onClick={loadData} >
           Load Data
       </Button>
         <Button variant="outlined" color="primary" >
