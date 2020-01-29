@@ -21,7 +21,28 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "plugins": [
+      "react-hooks"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".tsx"
+          ]
+        }
+      ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    },
+    "env": {
+      "browser": true,
+      "jest": true
+    }
   },
   "jest": {
     "coverageThreshold": {
@@ -57,6 +78,7 @@
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "typescript": "^3.7.5"
   }
 }
