@@ -48,11 +48,20 @@ describe('Sample Data functions', () => {
   });
 
   describe('clearData', () => {
+    const clearLocalStorage = localStorage.clear;
+    beforeEach(() => {
+      window.localStorage.__proto__.clear = jest.fn();
+    });
+    afterEach(() => {
+      window.localStorage.__proto__.clear = clearLocalStorage
+    });
     it('should be a function', () => {
       expect(clearData).toBeInstanceOf(Function);
     });
     it('should empty localstorage', () => {
-      jest.fail('Not Implemented')
+      expect(localStorage.clear).not.toHaveBeenCalled();
+      clearData();
+      expect(localStorage.clear).toHaveBeenCalled();
     });
   });
 });
