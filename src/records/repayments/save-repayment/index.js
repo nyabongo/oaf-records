@@ -1,6 +1,6 @@
 
 function fetchRepayments() {
-  return localStorage.getItem('Repayments') || []
+  return JSON.parse(localStorage.getItem('Repayments') || '[]')
 };
 
 function setRepayments(repayments) {
