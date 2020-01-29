@@ -3,8 +3,8 @@ import { render, fireEvent } from '@testing-library/react';
 import { loadData, uploadPayments, clearData } from './sample-data';
 import App from '.';
 
-jest.mock('./sample-data')
-jest.mock('./data-browser', () => () => <div data-testid="data-browser"></div>)
+jest.mock('./sample-data');
+jest.mock('./data-browser', () => () => <div data-testid="data-browser" />);
 
 describe('App', () => {
   let result;
@@ -59,11 +59,10 @@ describe('App', () => {
   describe('DataBrowser', () => {
     let dataBrowser;
     beforeEach(() => {
-      dataBrowser = result.getByTestId('data-browser')
+      dataBrowser = result.getByTestId('data-browser');
     });
     it('should be in the document', () => {
       expect(dataBrowser).toBeInTheDocument();
     });
   });
-
 });

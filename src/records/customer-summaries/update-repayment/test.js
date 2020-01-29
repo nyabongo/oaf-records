@@ -1,38 +1,38 @@
-import updateRepaymentSummary from ".";
-import { fetchAll } from "../fetch-summaries";
+import updateRepaymentSummary from '.';
+import { fetchAll } from '../fetch-summaries';
 
 const customer = 2;
 const season = 110;
-const amount = 200
+const amount = 200;
 const mockCustomerSummaries = [
   {
-    "CustomerID": 1,
-    "SeasonID": 110,
-    "Credit": 7900,
-    "TotalRepaid": 7900
+    CustomerID: 1,
+    SeasonID: 110,
+    Credit: 7900,
+    TotalRepaid: 7900,
   },
   {
-    "CustomerID": customer,
-    "SeasonID": season,
-    "Credit": 7900,
-    "TotalRepaid": 6700
+    CustomerID: customer,
+    SeasonID: season,
+    Credit: 7900,
+    TotalRepaid: 6700,
   },
   {
-    "CustomerID": 1,
-    "SeasonID": 130,
-    "Credit": 8000,
-    "TotalRepaid": 7400
+    CustomerID: 1,
+    SeasonID: 130,
+    Credit: 8000,
+    TotalRepaid: 7400,
   },
   {
-    "CustomerID": customer,
-    "SeasonID": 130,
-    "Credit": 7900,
-    "TotalRepaid": 7900
+    CustomerID: customer,
+    SeasonID: 130,
+    Credit: 7900,
+    TotalRepaid: 7900,
   },
-]
+];
 describe('updateRepaymentSummary', () => {
   beforeAll(() => {
-    localStorage.setItem('CustomerSummaries', JSON.stringify(mockCustomerSummaries))
+    localStorage.setItem('CustomerSummaries', JSON.stringify(mockCustomerSummaries));
   });
   it('should be a function', () => {
     expect(updateRepaymentSummary).toBeInstanceOf(Function);
@@ -49,7 +49,7 @@ describe('updateRepaymentSummary', () => {
   });
   describe.skip('Edge cases', () => {
     it('should do something when no entry is found to update', () => {
-      jest.fail('Not implemented yet')
+      jest.fail('Not implemented yet');
     });
   });
 });
