@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import {
   TableContainer,
   Paper,
@@ -25,7 +25,16 @@ function fetchRepayments() {
 }
 const RepaymentsTable = () => {
   const classes = useClasses();
-  const repayments = fetchRepayments();
+  const [repayments, setRepayments] = useState(fetchRepayments());
+
+  useLayoutEffect(() => {
+    const callback = () => {
+      setRepayments(fetchRepayments());
+    };
+    window.addEventListener('db-updated', callback);
+    return () => { window.removeEventListener('db-updated', callback); };
+  });
+
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table size="small">
