@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Button, Box, makeStyles, Typography } from '@material-ui/core'
 import { loadData, uploadPayments, clearData } from './sample-data';
+import DataBrowser from './data-browser';
 const useClasses = makeStyles({
   buttons: {
     display: 'flex',
@@ -33,6 +34,7 @@ function App() {
           Clear Data
       </Button>
       </Box>
+      <DataBrowser />
     </Fragment>
   );
 }
