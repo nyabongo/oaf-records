@@ -32,6 +32,9 @@ function getOutstandingSeason(customerID) {
   if (!summary) {
     summary = findLatestCustomerSummary(customerSummaries, customerID)
   }
+  if (!summary) {
+    return null;
+  }
   return { seasonID: summary.SeasonID, outstandingAmount: summary.Credit - summary.TotalRepaid }
 
 }

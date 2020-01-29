@@ -8,7 +8,8 @@ export function addPayment(customerID, date, amount, seasonID, parentPaymentID) 
     updateRepayment(customerID, seasonID, amount)
     return
   }
-  const outstandingSeason = getOutstandingSeason(customerID)
+  const outstandingSeason = getOutstandingSeason(customerID);
+  if (outstandingSeason === null) return;
   let paymentID
   if (parentPaymentID) {
     saveRepayment(amount, outstandingSeason.seasonID, customerID, date, parentPaymentID);

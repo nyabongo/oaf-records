@@ -79,10 +79,9 @@ describe('getOutstandingSeason', () => {
       expect(outstandingAmount).toEqual(paidTooMuch.Credit - paidTooMuch.TotalRepaid);
     });
   });
-  describe.skip('With CustomerID with no entries', () => {
-    it('should do something', () => {
-      getOutstandingSeason(999)
-      jest.fail('Not Implemented Yet');
+  describe('With CustomerID with no entries', () => {
+    it('should return null', () => {
+      expect(getOutstandingSeason(999)).toBeNull();
     });
   });
 });
