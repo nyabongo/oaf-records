@@ -1,6 +1,7 @@
 import data from './data';
+import { addPayment } from '../../records';
 
-const { Customers, Seasons,CustomerSummaries } = data;
+const { Customers, Seasons, CustomerSummaries, RepaymentUploads } = data;
 
 export function clearData() {
 
@@ -13,5 +14,7 @@ export function loadData() {
 }
 
 export function uploadPayments() {
-
+  RepaymentUploads.forEach(({ CustomerID, Date: date, Amount, SeasonID }) => {
+    addPayment(CustomerID, date, Amount, SeasonID)
+  })
 }

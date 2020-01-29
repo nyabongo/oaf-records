@@ -1,5 +1,8 @@
 import { clearData, loadData, uploadPayments } from '.'
 import data from './data'
+import { addPayment } from '../../records';
+
+jest.mock('../../records');
 
 describe('Sample Data functions', () => {
   beforeEach(() => {
@@ -31,8 +34,16 @@ describe('Sample Data functions', () => {
   });
 
   describe('uploadPayments', () => {
+    beforeEach(() => {
+      uploadPayments();
+    });
     it('should be a function', () => {
       expect(uploadPayments).toBeInstanceOf(Function);
+    });
+    it('should call addPayment for each payment record in the sample data', () => {
+      data.RepaymentUploads.forEach(({ CustomerID, Date, Amount, SeasonID }) => {
+        expect(addPayment).toHaveBeenCalledWith(CustomerID, Date, Amount, SeasonID);
+      })
     });
   });
 
