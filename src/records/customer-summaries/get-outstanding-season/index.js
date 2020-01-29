@@ -1,13 +1,13 @@
-import { fetchAll } from "../fetch-summaries";
+import { fetchAll } from '../fetch-summaries';
 
 function sortBySeason(a, b) {
   if (a.SeasonID < b.SeasonID) {
-    return -1
+    return -1;
   }
   if (a.SeasonID > b.SeasonID) {
-    return 1
+    return 1;
   }
-  return 0
+  return 0;
 }
 function findEarliestOutstandingSeasonSummary(customerSummaries, customerID) {
   return customerSummaries.find(({ CustomerID, Credit, TotalRepaid }) => {
@@ -21,25 +21,19 @@ function findEarliestOutstandingSeasonSummary(customerSummaries, customerID) {
 }
 
 function findLatestCustomerSummary(customerSummaries, customerID) {
-  return customerSummaries.reverse().find(({ CustomerID }) => {
-    return CustomerID === customerID;
-  });
+  return customerSummaries.reverse().find(({ CustomerID }) => CustomerID === customerID);
 }
 
 function getOutstandingSeason(customerID) {
   const customerSummaries = fetchAll().sort(sortBySeason);
   let summary = findEarliestOutstandingSeasonSummary(customerSummaries, customerID);
   if (!summary) {
-    summary = findLatestCustomerSummary(customerSummaries, customerID)
+    summary = findLatestCustomerSummary(customerSummaries, customerID);
   }
   if (!summary) {
     return null;
   }
-  return { seasonID: summary.SeasonID, outstandingAmount: summary.Credit - summary.TotalRepaid }
-
+  return { seasonID: summary.SeasonID, outstandingAmount: summary.Credit - summary.TotalRepaid };
 }
 
 export default getOutstandingSeason;
-
-
-

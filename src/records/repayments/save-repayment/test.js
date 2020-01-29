@@ -1,4 +1,5 @@
 import saveRepayment from '.';
+
 const amount = 400;
 const seasonID = 2010;
 const customerID = 42;
@@ -7,7 +8,7 @@ const parentID = 3;
 
 describe('saveRepayment', () => {
   beforeEach(() => {
-    localStorage.clear()
+    localStorage.clear();
   });
   it('should be a function', () => {
     expect(saveRepayment).toBeInstanceOf(Function);
@@ -21,7 +22,7 @@ describe('saveRepayment', () => {
       SeasonID: seasonID,
       CustomerID: customerID,
       Date: date,
-      ParentID: parentID
+      ParentID: parentID,
     });
   });
   it('should mark ParentID as null if its not given', () => {
@@ -33,7 +34,7 @@ describe('saveRepayment', () => {
       SeasonID: seasonID,
       CustomerID: customerID,
       Date: date,
-      ParentID: null
+      ParentID: null,
     });
   });
   it('should return the repaymentsID', () => {

@@ -1,11 +1,9 @@
 import React from 'react';
 
-const RepaymentsTable = () => {
-  return (
-    <div>
+const RepaymentsTable = () => (
+  <div>
       Repayments table
-    </div>
-  );
-};
+  </div>
+);
 
 export default RepaymentsTable;

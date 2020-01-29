@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { AppBar, Tabs, Tab } from '@material-ui/core';
 import CustomerSummaryTable from './customer-summary-table';
 import RepaymentsTable from './repayments-table';
-import { AppBar, Tabs, Tab } from '@material-ui/core';
 
 const DataBrowser = () => {
   const [value, setValue] = useState(0);
   const handleChange = (e, val) => {
-    setValue(val)
-  }
+    setValue(val);
+  };
   return (
     <div style={{ padding: 16 }}>
       <AppBar position="static">

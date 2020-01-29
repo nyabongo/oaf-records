@@ -4,24 +4,24 @@ import CustomerSummaryTable from '.';
 
 const sampleSummary = [
   {
-    "CustomerID": 1,
-    "SeasonID": 110,
-    "Credit": 7900,
-    "TotalRepaid": 7900
+    CustomerID: 1,
+    SeasonID: 110,
+    Credit: 7900,
+    TotalRepaid: 7900,
   },
   {
-    "CustomerID": 2,
-    "SeasonID": 110,
-    "Credit": 7900,
-    "TotalRepaid": 7900
+    CustomerID: 2,
+    SeasonID: 110,
+    Credit: 7900,
+    TotalRepaid: 7900,
   },
   {
-    "CustomerID": 1,
-    "SeasonID": 130,
-    "Credit": 8000,
-    "TotalRepaid": 7400
+    CustomerID: 1,
+    SeasonID: 130,
+    Credit: 8000,
+    TotalRepaid: 7400,
   },
-]
+];
 
 describe('CustomerSummaryTable', () => {
   let result;
@@ -46,11 +46,13 @@ describe('CustomerSummaryTable', () => {
   it('should have a Total Credit column', () => {
     expect(result.getByText('Total Credit')).toBeInTheDocument();
   });
-  sampleSummary.forEach(({ CustomerID, SeasonID, TotalRepaid, Credit }, i) => {
-    describe('Row : ' + i, () => {
-      let row
+  sampleSummary.forEach(({
+    CustomerID, SeasonID, TotalRepaid, Credit,
+  }, i) => {
+    describe(`Row : ${i}`, () => {
+      let row;
       beforeEach(() => {
-        row = result.getByTestId(`row-${i}`)
+        row = result.getByTestId(`row-${i}`);
       });
 
       it('should show the Customer ID', () => {
@@ -70,5 +72,5 @@ describe('CustomerSummaryTable', () => {
         expect(cell.innerHTML).toEqual(`${Credit}`);
       });
     });
-  })
+  });
 });

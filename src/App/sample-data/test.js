@@ -1,5 +1,5 @@
-import { clearData, loadData, uploadPayments } from '.'
-import data from './data'
+import { clearData, loadData, uploadPayments } from '.';
+import data from './data';
 import { addPayment } from '../../records';
 
 jest.mock('../../records');
@@ -41,19 +41,23 @@ describe('Sample Data functions', () => {
       expect(uploadPayments).toBeInstanceOf(Function);
     });
     it('should call addPayment for each payment record in the sample data', () => {
-      data.RepaymentUploads.forEach(({ CustomerID, Date, Amount, SeasonID }) => {
+      data.RepaymentUploads.forEach(({
+        CustomerID, Date, Amount, SeasonID,
+      }) => {
         expect(addPayment).toHaveBeenCalledWith(CustomerID, Date, Amount, SeasonID);
-      })
+      });
     });
   });
 
   describe('clearData', () => {
     const clearLocalStorage = localStorage.clear;
     beforeEach(() => {
+      // eslint-disable-next-line no-proto
       window.localStorage.__proto__.clear = jest.fn();
     });
     afterEach(() => {
-      window.localStorage.__proto__.clear = clearLocalStorage
+      // eslint-disable-next-line no-proto
+      window.localStorage.__proto__.clear = clearLocalStorage;
     });
     it('should be a function', () => {
       expect(clearData).toBeInstanceOf(Function);
