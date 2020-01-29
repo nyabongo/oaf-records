@@ -11,7 +11,7 @@ const updateRepaymentSummary = (customerID, seasonID, amount) => {
         }
       }
     }
-    return amount;
+    return entry;
   });
   localStorage.setItem('CustomerSummaries',JSON.stringify(updated))
 }
