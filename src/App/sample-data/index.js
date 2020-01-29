@@ -4,7 +4,7 @@ import { addPayment } from '../../records';
 const { Customers, Seasons, CustomerSummaries, RepaymentUploads } = data;
 
 export function clearData() {
-
+  localStorage.clear()
 }
 
 export function loadData() {
